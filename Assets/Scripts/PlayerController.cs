@@ -11,8 +11,12 @@ public class PlayerController : MonoBehaviour {
     public string HorizAxis = "Horizontal";
     public string VertAxis = "Vertical";
     public string FireAxis = "Fire1";
-    public float MaxSpeed = 5f;
 
+    public float MaxSpeed = 5f;
+    public float ReloadDelay = 0.3f;
+    public bool CanFire = true;
+
+    public Transform[] TurretTransforms;
     //--------------------------
     // Use this for initialization
     void Awake ()
@@ -52,5 +56,25 @@ public class PlayerController : MonoBehaviour {
             //(LookDirection.normalized, Vector3.up);
             ThisTransform.localRotation = Quaternion.LookRotation(MoveDirection.normalized, Vector3.up);
         }
+
+        //Check fire control
+        if (Input.GetButtonDown(FireAxis) && CanFire)
+        {
+            foreach (Transform T in TurretTransforms)
+                AmmoManager.SpawnAmmo(T.position, T.rotation);
+
+            CanFire = false;
+            Invoke("EnableFire", ReloadDelay);
+        }
 	}
+
+    void EnableFire()
+    {
+        CanFire = true;
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }

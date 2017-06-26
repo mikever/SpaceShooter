@@ -39,10 +39,10 @@ public class Health : MonoBehaviour {
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            HealthPoints = 0;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    HealthPoints = 0;
+        //}
     }
 
     //-------------------
