@@ -98,8 +98,10 @@
     <Compile Include="Assets\Scripts\MobileControlRig.cs" />
     <Compile Include="Assets\Scripts\Mover.cs" />
     <Compile Include="Assets\Scripts\ObjFace.cs" />
+    <Compile Include="Assets\Scripts\PauseScript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ProxyDamage.cs" />
+    <Compile Include="Assets\Scripts\RestartGame.cs" />
     <Compile Include="Assets\Scripts\ScoreOnDestroy.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TimeDestroy.cs" />

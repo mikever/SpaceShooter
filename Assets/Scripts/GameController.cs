@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
     // Game Score
-    public static int Score;
+    public static int Score = 0;
 
     // Prefix
     public string ScorePrefix = string.Empty;
@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
     void Awake()
     {
         ThisInstance = this;
+        Score = 0;
     }
 
     void Update()
