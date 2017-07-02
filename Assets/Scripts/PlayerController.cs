@@ -58,15 +58,20 @@ public class PlayerController : MonoBehaviour {
         }
 
         //Check fire control
-        if (Input.GetButtonDown(FireAxis) && CanFire)
-        {
-            foreach (Transform T in TurretTransforms)
-                AmmoManager.SpawnAmmo(T.position, T.rotation);
-
-            CanFire = false;
-            Invoke("EnableFire", ReloadDelay);
-        }
+        fire();
 	}
+
+    public void fire()
+    {
+        if (Input.GetButtonDown(FireAxis) && CanFire)
+            {
+                foreach (Transform T in TurretTransforms)
+                    AmmoManager.SpawnAmmo(T.position, T.rotation);
+
+                CanFire = false;
+                Invoke("EnableFire", ReloadDelay);
+            }
+    }
 
     void EnableFire()
     {

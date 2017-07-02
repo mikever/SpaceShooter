@@ -22,6 +22,8 @@ public class Ammo : MonoBehaviour {
         if (H == null) return;
 
         H.HealthPoints -= Damage;
+
+        Die();
     }
 
     void Die()

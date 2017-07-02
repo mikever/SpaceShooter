@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour {
-    public GameObject DeathParticlesPrefab = null;
+    public GameObject DeathParticlesPrefab = null;      // animation on death
+    public GameObject DamageParticlesPrefab = null;     // animation on damage
     private Transform ThisTransform = null;
     public bool ShouldDestroyOnDeath = true;
     //-------------------
@@ -24,6 +25,11 @@ public class Health : MonoBehaviour {
         {
             _HealthPoints = value;
 
+            if (_HealthPoints == 100 || _HealthPoints == 200 || _HealthPoints == 300 || _HealthPoints == 400)
+            {
+                Instantiate(DamageParticlesPrefab, ThisTransform.position, ThisTransform.rotation);
+            }
+
             if (_HealthPoints <= 0)
             {
                 SendMessage("Die", SendMessageOptions.DontRequireReceiver);
@@ -39,14 +45,17 @@ public class Health : MonoBehaviour {
     }
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    HealthPoints = 0;
-        //}
+        
     }
 
     //-------------------
     [SerializeField]
     private float _HealthPoints = 100f;
+
+    public void Damage()
+    {
+        Instantiate(DamageParticlesPrefab,
+                        ThisTransform.position, ThisTransform.rotation);
+    }
 }
 //-------------------

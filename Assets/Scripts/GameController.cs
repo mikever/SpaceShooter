@@ -23,7 +23,6 @@ public class GameController : MonoBehaviour {
     void Awake()
     {
         ThisInstance = this;
-        Score = 0;
     }
 
     void Update()

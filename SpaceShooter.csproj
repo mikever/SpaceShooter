@@ -103,8 +103,13 @@
     <Compile Include="Assets\Scripts\ProxyDamage.cs" />
     <Compile Include="Assets\Scripts\RestartGame.cs" />
     <Compile Include="Assets\Scripts\ScoreOnDestroy.cs" />
+    <Compile Include="Assets\Scripts\SpawnOnce.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\SwitchLevel1.cs" />
+    <Compile Include="Assets\Scripts\SwitchLevel2.cs" />
+    <Compile Include="Assets\Scripts\SwitchLevel3.cs" />
     <Compile Include="Assets\Scripts\TimeDestroy.cs" />
+    <Compile Include="Assets\Scripts\TimeSlow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Audio\CopyrightNotice.txt" />
