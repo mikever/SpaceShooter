@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
     public float MaxRadius = 1f;
     public float Interval = 5f;
+    public float firstInstance = 0f;
     public GameObject ObjToSpawn = null;
     private Transform Origin = null;
     //-----------------------------
@@ -17,7 +18,7 @@ public class Spawner : MonoBehaviour {
     //Use this for initialization
     void Start()
     {
-        InvokeRepeating("Spawn", 0f, Interval);
+        InvokeRepeating("Spawn", firstInstance, Interval);
     }
     //-----------------------------
     void Spawn ()

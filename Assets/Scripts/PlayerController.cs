@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     private Rigidbody ThisBody = null;
     private Transform ThisTransform = null;
 
@@ -16,10 +17,14 @@ public class PlayerController : MonoBehaviour {
     public float ReloadDelay = 0.3f;
     public bool CanFire = true;
 
+    public static bool superShot = false;
+    public int superCount = 0;
+
     public Transform[] TurretTransforms;
+    public Transform[] SuperTurretTransforms;
     //--------------------------
     // Use this for initialization
-    void Awake ()
+    void Awake()
     {
         ThisBody = GetComponent<Rigidbody>();
         ThisTransform = GetComponent<Transform>();
@@ -27,7 +32,8 @@ public class PlayerController : MonoBehaviour {
 
     //--------------------------
     // Update is called once per frame
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         //Update movement
         float Horz = CrossPlatformInputManager.GetAxis("Horizontal");//Input.GetAxis(HorizAxis);
         float Vert = CrossPlatformInputManager.GetAxis("Vertical");//Input.GetAxis(VertAxis);
@@ -58,19 +64,40 @@ public class PlayerController : MonoBehaviour {
         }
 
         //Check fire control
-        fire();
-	}
+        fireWeapon();
+
+
+
+    }
 
     public void fire()
     {
-        if (Input.GetButtonDown(FireAxis) && CanFire)
-            {
-                foreach (Transform T in TurretTransforms)
-                    AmmoManager.SpawnAmmo(T.position, T.rotation);
 
-                CanFire = false;
-                Invoke("EnableFire", ReloadDelay);
+        if (Input.GetButtonDown(FireAxis) && CanFire)
+        {
+            foreach (Transform T in TurretTransforms)
+                AmmoManager.SpawnAmmo(T.position, T.rotation);
+
+            CanFire = false;
+            Invoke("EnableFire", ReloadDelay);
+        }
+    }
+
+    public void fire2()
+    {
+        if (Input.GetButtonDown(FireAxis) && CanFire)
+        {
+            foreach (Transform U in SuperTurretTransforms)
+                SuperAmmoManager.SuperSpawnAmmo(U.position, U.rotation);
+
+            CanFire = false;
+            Invoke("EnableFire", ReloadDelay);
+            superCount++;
+            if (superCount % 7 == 0)
+            {
+                superShot = false;
             }
+        }
     }
 
     void EnableFire()
@@ -82,4 +109,17 @@ public class PlayerController : MonoBehaviour {
     {
         Destroy(gameObject);
     }
+
+    public void fireWeapon()
+    {
+        if (superShot == false)
+        {
+            fire();
+        }
+        else
+        {
+            fire2();
+        }
+    }
+
 }

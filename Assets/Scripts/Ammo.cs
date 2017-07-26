@@ -30,4 +30,5 @@ public class Ammo : MonoBehaviour {
     {
         gameObject.SetActive(false);
     }
+
 }

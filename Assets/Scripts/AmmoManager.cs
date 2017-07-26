@@ -29,6 +29,7 @@ public class AmmoManager : MonoBehaviour {
         AmmoManagerSingleton = this;
         AmmoArray = new GameObject[PoolSize];
 
+        // Create qeues of regular ammo and super ammo
         for (int i = 0; i < PoolSize; i++)
         {
             AmmoArray[i] = Instantiate(AmmoPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -43,15 +44,18 @@ public class AmmoManager : MonoBehaviour {
     {
         //Get ammo
         Transform SpawnedAmmo = AmmoManagerSingleton.AmmoQueue.Dequeue();
-
+        
         SpawnedAmmo.gameObject.SetActive(true);
         SpawnedAmmo.position = Position;
         SpawnedAmmo.localRotation = Rotation;
 
         //Add to queue end
         AmmoManagerSingleton.AmmoQueue.Enqueue(SpawnedAmmo);
-
+        
         //Return ammo
         return SpawnedAmmo;
+        
     }
+        
+
 }
